@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create-employee',
@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.employeeForm = this.fb.group({
@@ -37,6 +37,18 @@ export class CreateEmployeeComponent implements OnInit {
         skillName: 'Angular, Alogorithm',
         experienceInYear: 1,
         proficiency: 'beginner'
+      }
+    });
+    this.logKeyValues(this.employeeForm);
+  }
+
+  logKeyValues(group: FormGroup): void {
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.get(key);
+      if (abstractControl instanceof FormGroup) {
+        this.logKeyValues(abstractControl);
+      } else {
+        console.log("key => " + key + "  Value => " + abstractControl.value);
       }
     });
   }

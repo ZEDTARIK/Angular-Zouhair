@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CreateEmployeeComponent } from './employee/create-employee.component';
-import { ListEmployeeComponent } from './employee/list-employee.component';
+import { CreateEmployeeComponent } from './components/employee/create-employee.component';
+import { ListEmployeeComponent } from './components/employee/list-employee.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({

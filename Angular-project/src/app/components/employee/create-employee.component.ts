@@ -27,4 +27,19 @@ export class CreateEmployeeComponent implements OnInit {
     console.log(this.employeeForm.value);
   }
 
+  // setValue = must all variable data be present
+  // patchValue = you can put some value , not all
+
+  onLoading() {
+    this.employeeForm.patchValue({
+      fullName: 'Zouhair ETTARAK',
+      email: 'ettarak.zouhair@gmail.com',
+      skills: {
+        skillName: 'Angular, Alogorithm',
+        experienceInYear: 1,
+        proficiency: 'beginner'
+      }
+    });
+  }
+
 }

@@ -13,11 +13,12 @@ export class CreateEmployeeComponent implements OnInit {
   validationMessage = {
     'fullName': {
       'required': 'FullName is Required',
-      'minLength': 'FullName must be greater than 4 characters',
-      'maxLength': 'FullName must be less than 50 characters'
+      'minlength': 'FullName must be greater than 4 characters',
+      'maxlength': 'FullName must be less than 50 characters'
     },
     'email': {
-      'required': 'Email is Required'
+      'required': 'Email is Required',
+      'email': 'Invalid email'
     },
     'skillName': {
       'required': 'Skills is Required'
@@ -30,7 +31,7 @@ export class CreateEmployeeComponent implements OnInit {
     }
   };
 
-  formError = {
+  formErrors = {
     'fullName': '',
     'email': '',
     'skillName': '',
@@ -42,18 +43,23 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
     this.employeeForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       skills: this.fb.group({
         skillName: ['', Validators.required],
         experienceInYear: ['', Validators.required],
         proficiency: ['', Validators.required]
       })
     });
+
+    // valueChanges for dispaly Errors Messages
+    this.employeeForm.valueChanges.subscribe((data) => {
+      this.logValidationErrors(this.employeeForm);
+    });
+
   }
 
   onSubmit() {
-    //console.log(this.employeeForm.value);
-    this.logValidationErrors(this.employeeForm);
+    console.log(this.employeeForm.value);
   }
 
   // setValue = must all variable data be present
@@ -61,15 +67,15 @@ export class CreateEmployeeComponent implements OnInit {
 
   onLoading() {
     this.employeeForm.patchValue({
-      fullName: 'Zouhair ETTARAK',
+      fullName: 'Zouhair ET-TARAK',
       email: 'ettarak.zouhair@gmail.com',
       skills: {
-        skillName: 'Angular, Alogorithm',
-        experienceInYear: 1,
+        skillName: 'Algorithm, SQL, Angular',
+        experienceInYear: 2,
         proficiency: 'beginner'
       }
     });
-    this.logKeyValues(this.employeeForm);
+    // this.logKeyValues(this.employeeForm);
   }
 
   logKeyValues(group: FormGroup): void {
@@ -83,20 +89,25 @@ export class CreateEmployeeComponent implements OnInit {
     });
   }
 
-  logValidationErrors(group: FormGroup): void {
+  logValidationErrors(group: FormGroup = this.employeeForm) {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
         this.logValidationErrors(abstractControl)
       } else {
-        const message = this.validationMessage[key];
-        for ( const errorKey in abstractControl.errors) {
-          if(errorKey) {
-            this.formError[key] += message[errorKey] + ' ';
+        this.formErrors[key] = '';
+        if (abstractControl && !abstractControl.valid) {
+          const message = this.validationMessage[key];
+
+          for (const errorKey in abstractControl.errors) {
+            if (errorKey) {
+              this.formErrors[key] += message[errorKey] + ' ';
+            }
           }
+
         }
       }
-    })
+    });
   }
 
 }

@@ -11,10 +11,10 @@
             employeeForm.get('fullName').touched ||
             employeeForm.get('fullName').dirty )}">
             <label for="fullName" class="col-sm-2 control-label">Full Name</label>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <input type="text" id="fullName" class="form-control" formControlName="fullName" placeholder="fullName">
             </div>
-            <span class="col-sm-4 help-block" *ngIf="employeeForm.get('fullName').errors && (
+            <span class="col-sm-6 help-block" *ngIf="employeeForm.get('fullName').errors && (
                    employeeForm.get('fullName').touched ||
                    employeeForm.get('fullName').dirty )">
 
@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <label for="email" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
               <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email">
             </div>
           </div>
@@ -36,7 +36,7 @@
             <div formGroupName="skills">
               <div class="form-group">
                 <label for="skillName" class="col-sm-2 control-label">Skill Name</label>
-                <div class="col-sm-8">
+                <div class="col-sm-4">
                   <input type="text" id="skillName" class="form-control" formControlName="skillName"
                     placeholder="C#, Java, ...">
                 </div>
@@ -44,7 +44,7 @@
 
               <div class="form-group">
                 <label for="experienceInYear" class="col-sm-2 control-label">Experience In Year</label>
-                <div class="col-sm-8">
+                <div class="col-sm-4">
                   <input type="text" id="experienceInYear" class="form-control" formControlName="experienceInYear"
                     placeholder="Experience In Year">
                 </div>
@@ -52,7 +52,7 @@
 
               <div class="form-group">
                 <label for="proficiency" class="col-sm-2 control-label">Proficiency</label>
-                <div class="col-sm-8">
+                <div class="col-sm-4">
 
                   <label class="radio-inline">
                     <input id="proficiency" type="radio" value="beginner" formControlName="proficiency">Beginner
@@ -80,3 +80,9 @@
     </form>
   </div>
 </div>
+
+
+<pre>
+  <label for="">Employee Value : </label>
+  {{ employeeForm.value | json }}
+</pre>

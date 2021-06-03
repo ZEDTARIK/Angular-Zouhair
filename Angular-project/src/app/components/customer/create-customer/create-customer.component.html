@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="form-horizontal" autocomplete="off">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Customer</h3>
+        </div>
+
+        <div class="panel-body">
+
+          <div class="form-group" [ngClass]="{'has-error': formErrors.fullName }">
+            <label for="fullName" class="col-sm-2 control-label">FullName</label>
+            <div class="col-sm-4">
+              <input (blur)="logValidationErrors()" type="text" class="form-control" id="fullName"
+                placeholder="Full Name" formControlName="fullName">
+            </div>
+            <span class="col-sm-6 help-block" *ngIf="formErrors.fullName">
+              {{ formErrors.fullName }}
+            </span>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error': formErrors.Email }">
+            <label for="Email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-4">
+              <input (blur)="logValidationErrors()" type="text" class="form-control" name="Email" placeholder="Email"
+                formControlName="Email">
+            </div>
+            <div class="col-sm-6" *ngIf="formErrors.Email">
+              <span class="help-block"> {{ formErrors.Email }} </span>
+            </div>
+          </div>
+
+
+          <div class="well">
+            <div formGroupName="Adresse">
+
+              <div class="form-group" [ngClass]="{'has-error': formErrors.City }">
+                <label for="City" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-4">
+                  <input (blur)="logValidationErrors()" type="text" class="form-control" id="City" placeholder="City" formControlName="City">
+                </div>
+                <div class="col-sm-6" *ngIf="formErrors.City">
+                  <span class="help-block"> {{ formErrors.City }} </span>
+                </div>
+              </div>
+
+              <div class="form-group" [ngClass]="{'has-error': formErrors.PhoneNumber}">
+                <label for="PhoneNumber" class="col-sm-2 control-label">PhoneNumber</label>
+                <div class="col-sm-4">
+                  <input (blur)="logValidationErrors()" type="text" class="form-control" id="PhoneNumber" placeholder="PhoneNumber"
+                    formControlName="PhoneNumber">
+                </div>
+                <div class="col-sm-6" *ngIf="formErrors.PhoneNumber">
+                  <span class="help-block"> {{formErrors.PhoneNumber }} </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="panel-footer">
+          <div class="btn-toolbar">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>

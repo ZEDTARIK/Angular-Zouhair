@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CreateEmployeeComponent } from './components/employee/create-employee.component';
 import { ListEmployeeComponent } from './components/employee/list-employee.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CreateCustomerComponent } from './components/customer/create-customer/create-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateEmployeeComponent,
-    ListEmployeeComponent
+    ListEmployeeComponent,
+    CreateCustomerComponent
   ],
   imports: [
     BrowserModule,

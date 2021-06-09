@@ -10,7 +10,7 @@ export class CreateCustomerComponent implements OnInit {
   customerForm: FormGroup;
 
   validationMessage = {
-    fullName: {
+    FullName: {
       required: 'FullName is Required',
       minlength: 'FullName must be greater than 4 characters',
       maxlength: 'FullName must be less than 60 characters'
@@ -28,7 +28,7 @@ export class CreateCustomerComponent implements OnInit {
   };
 
   formErrors = {
-    fullName: '',
+    FullName: '',
     Email: '',
     City: '',
     PhoneNumber: ''
@@ -38,7 +38,7 @@ export class CreateCustomerComponent implements OnInit {
 
   ngOnInit() {
     this.customerForm = this.formbuild.group({
-      fullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
+      FullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
       Email: ['', [Validators.required, Validators.email]],
       Adresse: this.formbuild.group({
         City: ['', Validators.required],
@@ -61,7 +61,7 @@ export class CreateCustomerComponent implements OnInit {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
-        this.logValidationErrors(abstractControl);
+        this.logValidationErrors(abstractControl)
       } else {
         this.formErrors[key] = '';
         if (abstractControl && !abstractControl.valid) {

@@ -8,14 +8,14 @@
 
         <div class="panel-body">
 
-          <div class="form-group" [ngClass]="{'has-error': formErrors.fullName }">
-            <label for="fullName" class="col-sm-2 control-label">FullName</label>
+          <div class="form-group" [ngClass]="{'has-error': formErrors.FullName }">
+            <label for="FullName" class="col-sm-2 control-label">FullName</label>
             <div class="col-sm-4">
-              <input (blur)="logValidationErrors()" type="text" class="form-control" id="fullName"
-                placeholder="Full Name" formControlName="fullName">
+              <input (blur)="logValidationErrors()" type="text" class="form-control" id="FullName"
+                placeholder="Full Name" formControlName="FullName">
             </div>
-            <span class="col-sm-6 help-block" *ngIf="formErrors.fullName">
-              {{ formErrors.fullName }}
+            <span class="col-sm-6 help-block" *ngIf="formErrors.FullName">
+              {{ formErrors.FullName }}
             </span>
           </div>
 

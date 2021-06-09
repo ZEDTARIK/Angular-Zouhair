@@ -18,6 +18,23 @@
             </span>
           </div>
 
+          <!-- Contact Preference Email or Phone Number-->
+
+          <div class="form-group">
+            <label for="contactPreference" class="col-sm-2 control-label">Contact Preference</label>
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input (click)="onChoiceContact('Email')" type="radio" value="Email" formControlName="contactPreference">Email
+              </label>
+              <label class="radio-inline">
+                <input (click)="onChoiceContact('PhoneNumber')"  type="radio" value="PhoneNumber"
+                  formControlName="contactPreference">PhoneNumber
+              </label>
+            </div>
+          </div>
+
+          <!-- Fin Contact Preference Email or Phone Number-->
+
           <div class="form-group" [ngClass]="{'has-error': formErrors.fullName }">
             <label for="email" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-4">
@@ -26,6 +43,17 @@
             </div>
             <span class="col-sm-6 help-block" *ngIf="formErrors.email">
               {{ formErrors.email}}
+            </span>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error': formErrors.phoneNumber }">
+            <label for="phoneNumber" class="col-sm-2 control-label">PhoneNumber</label>
+            <div class="col-sm-4">
+              <input (blur)="logValidationErrors()" type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+                placeholder="PhoneNumber">
+            </div>
+            <span class="col-sm-6 help-block" *ngIf="formErrors.phoneNumber">
+              {{ formErrors.phoneNumber}}
             </span>
           </div>
 

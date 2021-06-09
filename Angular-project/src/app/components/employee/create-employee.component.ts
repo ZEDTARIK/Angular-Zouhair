@@ -28,6 +28,10 @@ export class CreateEmployeeComponent implements OnInit {
     },
     proficiency: {
       required: 'Proficiency is Required'
+    },
+    phoneNumber: {
+      required: 'PhoneNumber is Required',
+      minlength: 'PhoneNumber must be greater than 5 Number',
     }
   };
 
@@ -36,18 +40,21 @@ export class CreateEmployeeComponent implements OnInit {
     email: '',
     skillName: '',
     experienceInYear: '',
-    proficiency: ''
+    proficiency: '',
+    phoneNumber: ''
   };
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.employeeForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      contactPreference: ['Email'],
       email: ['', [Validators.required, Validators.email]],
+      phoneNumber: [''],
       skills: this.fb.group({
         skillName: ['', Validators.required],
         experienceInYear: ['', Validators.required],
-        proficiency: ['', Validators.required]
+        proficiency: ['beginner', Validators.required]
       })
     });
 
@@ -56,6 +63,9 @@ export class CreateEmployeeComponent implements OnInit {
       this.logValidationErrors(this.employeeForm);
     });
 
+    this.employeeForm.get('contactPreference').valueChanges.subscribe((data: string) => {
+      this.onChoiceContact(data);
+    })
   }
 
   onSubmit() {
@@ -108,6 +118,17 @@ export class CreateEmployeeComponent implements OnInit {
         }
       }
     });
+  }
+
+
+  onChoiceContact(selected: string) {
+    const phoneNumberControl = this.employeeForm.get('phoneNumber');
+    if (selected === 'PhoneNumber') {
+      phoneNumberControl.setValidators([Validators.required, Validators.minLength(6)]);
+    } else {
+      phoneNumberControl.clearValidators();
+    }
+    phoneNumberControl.updateValueAndValidity();
   }
 
 }

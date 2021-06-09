@@ -10,28 +10,28 @@ export class CreateCustomerComponent implements OnInit {
   customerForm: FormGroup;
 
   validationMessage = {
-    'fullName': {
-      'required': 'FullName is Required',
-      'minlength': 'FullName must be greater than 4 characters',
-      'maxlength': 'FullName must be less than 60 characters'
+    fullName: {
+      required: 'FullName is Required',
+      minlength: 'FullName must be greater than 4 characters',
+      maxlength: 'FullName must be less than 60 characters'
     },
-    'Email': {
-      'required': 'Email is Required',
-      'email': 'Invalid Email'
+    Email: {
+      required: 'Email is Required',
+      email: 'Invalid Email'
     },
-    'City': {
-      'required': 'City is Required',
+    City: {
+      required: 'City is Required',
     },
-    'PhoneNumber': {
-      'required': 'PhoneNumber is Required',
+    PhoneNumber: {
+      required: 'PhoneNumber is Required',
     }
   };
 
   formErrors = {
-    'fullName': '',
-    'Email': '',
-    'City': '',
-    'PhoneNumber': ''
+    fullName: '',
+    Email: '',
+    City: '',
+    PhoneNumber: ''
   };
 
   constructor(private formbuild: FormBuilder) { }
@@ -61,7 +61,7 @@ export class CreateCustomerComponent implements OnInit {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
-        this.logValidationErrors(abstractControl)
+        this.logValidationErrors(abstractControl);
       } else {
         this.formErrors[key] = '';
         if (abstractControl && !abstractControl.valid) {

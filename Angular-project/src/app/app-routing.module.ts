@@ -9,7 +9,7 @@ const appRouter: Routes = [
   { path: 'employee-create', component: CreateEmployeeComponent},
   { path: '', redirectTo: '/employee-list', pathMatch: 'full' },
   { path: 'customer-create', component: CreateCustomerComponent}
-]
+];
 
 @NgModule({
   declarations: [],

@@ -11,32 +11,32 @@ export class CreateEmployeeComponent implements OnInit {
 
   // Move Validation to Component
   validationMessage = {
-    'fullName': {
-      'required': 'FullName is Required',
-      'minlength': 'FullName must be greater than 4 characters',
-      'maxlength': 'FullName must be less than 50 characters'
+    fullName: {
+      required: 'FullName is Required',
+      minlength: 'FullName must be greater than 4 characters',
+      maxlength: 'FullName must be less than 50 characters'
     },
-    'email': {
-      'required': 'Email is Required',
-      'email': 'Invalid email'
+    email: {
+      required: 'Email is Required',
+      email: 'Invalid email'
     },
-    'skillName': {
-      'required': 'Skills is Required'
+    skillName: {
+      required: 'Skills is Required'
     },
-    'experienceInYear': {
-      'required': 'experience is Required'
+    experienceInYear: {
+      required: 'experience is Required'
     },
-    'proficiency': {
-      'required': 'Proficiency is Required'
+    proficiency: {
+      required: 'Proficiency is Required'
     }
   };
 
   formErrors = {
-    'fullName': '',
-    'email': '',
-    'skillName': '',
-    'experienceInYear': '',
-    'proficiency': ''
+    fullName: '',
+    email: '',
+    skillName: '',
+    experienceInYear: '',
+    proficiency: ''
   };
   constructor(private fb: FormBuilder) { }
 
@@ -84,7 +84,7 @@ export class CreateEmployeeComponent implements OnInit {
       if (abstractControl instanceof FormGroup) {
         this.logKeyValues(abstractControl);
       } else {
-        console.log("key => " + key + "  Value => " + abstractControl.value);
+        console.log('key => ' + key + '  Value => ' + abstractControl.value);
       }
     });
   }
@@ -93,7 +93,7 @@ export class CreateEmployeeComponent implements OnInit {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
-        this.logValidationErrors(abstractControl)
+        this.logValidationErrors(abstractControl);
       } else {
         this.formErrors[key] = '';
         if (abstractControl && !abstractControl.valid) {
